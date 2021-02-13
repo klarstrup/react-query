@@ -4,13 +4,14 @@ import { usePosts } from '../../hooks/usePosts'
 export const PostList = ({ isClient }) => {
   const [postCount, setPostCount] = useState(10)
   const { data, isLoading, isFetching } = usePosts(postCount, isClient)
+  const posts = data?.pages?.flat()
 
   if (isLoading) return <div>Loading</div>
 
   return (
     <section>
       <ul>
-        {data?.map((post, index) => (
+        {posts?.map((post, index) => (
           <li key={post.id}>
             <div>
               <span>{index + 1}. </span>

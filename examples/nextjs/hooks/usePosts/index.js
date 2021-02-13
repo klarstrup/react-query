@@ -1,5 +1,5 @@
 import ky from 'ky-universal'
-import { useQuery } from 'react-query'
+import { useInfiniteQuery } from 'react-query'
 
 const fetchPosts = async (limit = 10) => {
   const parsed = await ky('https://jsonplaceholder.typicode.com/posts').json()
@@ -8,7 +8,7 @@ const fetchPosts = async (limit = 10) => {
 }
 
 const usePosts = limit => {
-  return useQuery(['posts', limit], () => fetchPosts(limit))
+  return useInfiniteQuery(['posts', limit], () => fetchPosts(limit))
 }
 
 export { usePosts, fetchPosts }
